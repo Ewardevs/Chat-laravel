@@ -46,7 +46,7 @@
 
 
                                     <div class="modal-body">
-                                        <div class="msg-body" id="chat-container">
+                                        <div class="msg-body">
                                             <ul>
                                                 @foreach ($messages as $message )
                                                     @if ($message["sender"] != auth()->user()->name)
@@ -71,7 +71,7 @@
                                         <form wire:submit="sendMessage()">
                                             <input type="text" wire:model="message" class="form-control" aria-label="message…" placeholder="Write message…">
 
-                                            <button type="submit" ><i class="fa fa-paper-plane" aria-hidden="true"></i> Send</button>
+                                            <button type="submit"><i class="fa fa-paper-plane" aria-hidden="true"></i> Send</button>
                                         </form>
 
 

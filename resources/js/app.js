@@ -12,6 +12,3 @@ jQuery(document).ready(function() {
 
 
 });
-
-
-
