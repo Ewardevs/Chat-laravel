@@ -32,7 +32,7 @@ class MessageSendEvent implements ShouldBroadcastNow
     public function broadcastOn(): array
     {
         return [
-            new PrivateChannel('chat-channel.'. $this->message->receiver_id),
+            new PrivateChannel('chat.'. $this->message->receiver_id),
         ];
     }
 }

@@ -30,7 +30,7 @@ class ChatComponent extends Component
             ->where("receiver_id",$this->receiver_id);
         })->orWhere(function($query){
             $query->where("sender_id",$this->receiver_id)
-            ->where("receiver",$this->sender_id);
+            ->where("receiver_id",$this->sender_id);
         })->with("sender:id,name","receiver:id,name")->get();
 
         foreach($messages as $message){
@@ -51,10 +51,15 @@ class ChatComponent extends Component
         $this->chatMessage($message);
 
         broadcast(new MessageSendEvent($message))->toOthers();
+
+
+
         $this->message = "";
+
+
     }
 
-    #[On("echo-private:chat-channel.{sender_id},MessageSendEvent")]
+    #[On("echo-private:chat.{sender_id},MessageSendEvent")]
     public function listenforMessage($event){
         $chatMessage = Message::whereId($event["message"]["id"])
         ->with("sender:id,name","receiver:id,name")
